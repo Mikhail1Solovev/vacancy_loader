@@ -5,7 +5,7 @@ db_params = {
     'user': 'mikhail',
     'password': '2275450q',
     'host': 'localhost',
-    'port': '5433'  # Измените порт здесь на 5433
+    'port': '5433'
 }
 
 try:

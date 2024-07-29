@@ -7,13 +7,13 @@ db_params = {
     'user': 'mikhail',
     'password': '2275450q',
     'host': 'localhost',
-    'port': '5433'  # Измените порт здесь на 5433
+    'port': '5433'
 }
 
 # URL для получения данных
 url = "https://api.hh.ru/vacancies"
 
-# Параметры для API-запроса (модифицируйте по необходимости)
+# Параметры для API-запроса
 params = {
     'text': 'Python developer',
     'area': '1',  # Москва
