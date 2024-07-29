@@ -8,8 +8,15 @@ services:
       POSTGRES_USER: mikhail
       POSTGRES_PASSWORD: 2275450q
     ports:
-      - "5433:5432"  # Измените порт здесь
-    volumes:
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
-    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+      - "5433:5432"
+  app:
+    build: .
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: mikhaildb
+      DB_USER: mikhail
+      DB_PASSWORD: 2275450q
+    depends_on:
+      - db
+    command: python main.py
