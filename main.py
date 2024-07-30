@@ -1,10 +1,14 @@
-from loader.data_loader import DataLoader
-from database.setup import setup_database
+from loader.logger import Logger
+from loader.vacancy_loader import VacancyLoader
+from config import API_URL
+import time
 
-def main():
-    setup_database()
-    data_loader = DataLoader()
-    data_loader.load_data()
+if __name__ == '__main__':
+    Logger.setup_logging()
+    json_file = 'data.json'
+    vacancy_loader = VacancyLoader(API_URL, json_file)
+    vacancy_loader.run()
 
-if __name__ == "__main__":
-    main()
+    # Бесконечный цикл, чтобы контейнер оставался активным
+    while True:
+        time.sleep(10)

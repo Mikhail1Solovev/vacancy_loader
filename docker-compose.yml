@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   db:
     image: postgres:latest
@@ -9,14 +8,22 @@ services:
       POSTGRES_PASSWORD: 2275450q
     ports:
       - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
   app:
     build: .
+    depends_on:
+      - db
     environment:
-      DB_HOST: db
-      DB_PORT: 5432
       DB_NAME: mikhaildb
       DB_USER: mikhail
       DB_PASSWORD: 2275450q
-    depends_on:
-      - db
-    command: python main.py
+      DB_HOST: db
+      DB_PORT: 5432
+    volumes:
+      - .:/app
+    command: ["python", "main.py"]
+
+volumes:
+  db_data:
